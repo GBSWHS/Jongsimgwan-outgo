@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next'
 import { sign } from 'jsonwebtoken'
 import knex from 'knex'
-import sha256 from "sha256";
+import sha256 from "sha256"
 
 const db = knex({
   client: 'mysql',
