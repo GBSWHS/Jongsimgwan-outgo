@@ -23,10 +23,10 @@ export default function LoginForm () {
       })
     }).then((res) => res.json())
 
-    if (res.status !== 200) return alert(res.msg)
+    if (!res.success) return alert(res.msg)
     
     document.cookie = `token=${res.token}`
-    router.push('/')
+    window.location.replace('/')
   }
 
   return (

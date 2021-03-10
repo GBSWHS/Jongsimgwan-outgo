@@ -1,10 +1,12 @@
 import { parse } from 'cookieparser'
 import { NextPageContext } from 'next';
 import Container from "../components/Container";
+import OutgoForm from "../components/OutgoForm";
 import { UserData } from '../interface/UserData';
 import { verify } from 'jsonwebtoken'
 import path from 'path'
 import { readFileSync } from 'fs'
+import { useRouter } from 'next/router'
 import knex from 'knex'
 import { getDateNumber, getWeekNumber } from '../utils';
 
@@ -15,16 +17,34 @@ interface Props {
   user: UserData
   dday: string
   outgo: boolean
-  setdate: string
+  reason: string
 }
 
-export default function Home ({ user, dday, outgo, setdate }: Props) {
+export default function Home ({ user, dday, outgo, reason }: Props) {
+  const router = useRouter()
+
+  async function abortOutGo () {
+    if (confirm('출사 요청을 취소하시겠습니까?')) {
+      const res = await fetch('/api/outgo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: '나는 출사를 취소합니다 국그릇 삥뽕~' })
+      }).then((res) => res.json())
+  
+      if (!res.success) return alert(res.msg)
+      alert('성공적으로 출사 요청을 취소하였습니다.')
+      
+      router.reload()
+    } else return
+  }
+
   return (
     <Container>
       안녕하세요 {user.nickname}님!
       다음 출사 가능일:
       D-{dday}
-      현재 출사 설정: {outgo} ({setdate})
+      현재 출사 설정: {outgo ? <span>응 맞음 ({reason})</span> : <span>응 아님</span>}
+      { outgo ? <button onClick={abortOutGo}>출사 요청 취소</button> : <OutgoForm /> }
     </Container>
   )
 }
@@ -48,8 +68,8 @@ export async function getServerSideProps ({ req }: NextPageContext) {
     const [year, month, date] = outgoweek.date.split('-')
     const dday = getDateNumber(new Date(year, (month as number) - 1, date)) - getDateNumber(new Date())
     
-    const [outgo] = await db.select('*').where({ id }).andWhere('createdAt', '>', ).from('outgo')
+    const [outgo] = await db.select('*').where({ id }).from('outgo')
 
-    return { props: { user: { id, grade, class: classid, nickname, num }, dday, outgo: !!outgo }}
-  } catch (err) { return { redirect: { destination: '/login', permanent: false }}}
+    return { props: { user: { id, grade, class: classid, nickname, num }, dday, outgo: !!outgo, reason: outgo?.reason || '' }}
+  } catch (err) { console.log(err); return { redirect: { destination: '/login', permanent: false }}}
 }
