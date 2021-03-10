@@ -10,10 +10,11 @@ create table user (
   class int not null,
   passwd char(64) not null,
   salt char(8) not null,
+  nickname char(4) not null, 
   num int not null
 );
 
 create table outgo (
   id varchar(20) not null primary key,
-  createdAt int not null
+  reason text not null
 );
