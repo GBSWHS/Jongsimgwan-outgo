@@ -1,6 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 const { readFileSync } = require('fs')
 const path = require('path').resolve()
+const { schedule } = require('node-cron')
 const moment = require('moment')
 const knex = require('knex')
 let lastsheet
@@ -10,7 +11,7 @@ const db = knex({ client: 'mysql', connection: { host: 'localhost', user: 'outgo
 const doc = new GoogleSpreadsheet('1Fh0Rk55NX4BahYsWVSYABhIEqlXM65EQSk6n25vp1oc');
 const googleauth = JSON.parse(readFileSync(path + '/data/googleauth.json'))
 
-async function fuck() {
+async function renderSheet () {
   await doc.useServiceAccountAuth({ client_email: googleauth.client_email, private_key: googleauth.private_key })
   await doc.loadInfo()
 
@@ -24,5 +25,10 @@ async function fuck() {
   lastsheet = sheet.sheetId
 }
 
-fuck()
-setInterval(fuck, 60000)
+async function resetDatabase () {
+  await db.delete().from('outgo')
+}
+
+renderSheet()
+schedule('*/1 * * * *', renderSheet)
+schedule('0 0 * * 5', resetDatabase)

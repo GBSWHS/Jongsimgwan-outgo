@@ -1,1 +1,21 @@
-[{ "week": 11, "date": "2021-03-19" }, { "week": 13, "date": "2021-04-02"}, { "week": 15, "date": "2021-04-16" }, { "week": 17, "date": "2021-04-30" }, { "week": 19, "date": "2021-05-14" }, { "week": 21, "date": "2021-05-28" }, { "week": 23, "date": "2021-06-11" }, { "week": 26, "date": "2021-07-02" }]
+[
+  { "canGo": false, "date": "2021-03-12" },
+  { "canGo": true,  "date": "2021-03-19" },
+  { "canGo": false, "date": "2021-03-26" },
+  { "canGo": true,  "date": "2021-04-02" },
+  { "canGo": false, "date": "2021-04-09" },
+  { "canGo": true,  "date": "2021-04-16" },
+  { "canGo": false, "date": "2021-04-23" },
+  { "canGo": true,  "date": "2021-04-30" },
+  { "canGo": false, "date": "2021-05-07" },
+  { "canGo": true,  "date": "2021-05-14" },
+  { "canGo": false, "date": "2021-05-21" },
+  { "canGo": true,  "date": "2021-05-28" },
+  { "canGo": false, "date": "2021-06-04" },
+  { "canGo": true,  "date": "2021-06-11" },
+  { "canGo": false, "date": "2021-06-18" },
+  { "canGo": false, "date": "2021-06-25" },
+  { "canGo": true,  "date": "2021-07-02" },
+  { "canGo": false, "date": "2021-07-09" },
+  { "canGo": false, "date": "2021-07-16" }
+]

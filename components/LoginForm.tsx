@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 
 export default function LoginForm () {
-  const router = useRouter()
   const [id, setId] = useState('')
   const [passwd, setPasswd] = useState('')
 
@@ -31,9 +29,14 @@ export default function LoginForm () {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input required onChange={setState(setId)} type="text" placeholder="아이디"/>
-      <input required onChange={setState(setPasswd)} type="password" placeholder="비번"/>
-      <button type="submit">로그인!</button>
+      <div className="inline-block m-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
+        <span className="block mb-5">정심관 잔류 요청 로그인</span>
+        <input required onChange={setState(setId)} type="text" placeholder="아이디" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+        <input required onChange={setState(setPasswd)} type="password" placeholder="비번" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+      </div>
+      <div className="inline-block px-10 my-5 w-full">
+        <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">로그인!</button>
+      </div>
     </form>
   )
 }

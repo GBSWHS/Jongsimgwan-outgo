@@ -1,0 +1,5 @@
+@import '@fontsource/noto-sans-kr';
+
+* {
+  font-family: 'Noto Sans CJK KR', Arial, Helvetica, sans-serif;
+}
