@@ -2,4 +2,5 @@
 
 * {
   font-family: 'Noto Sans CJK KR', Arial, Helvetica, sans-serif;
+  word-break: keep-all;
 }
