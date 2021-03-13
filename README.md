@@ -62,7 +62,7 @@ source database.sql
 ```
 
 ### JWT 토큰 설정
-JWT 토큰 생성에 사용될 시크릿을 다음 경로와 형식으로 입력한다:\
+JWT 토큰 생성에 사용될 시크릿을 다음 경로와 형식으로 입력한다:
 ```sh
 # .env.local
 JWT_TOKEN=사용할시크릿
