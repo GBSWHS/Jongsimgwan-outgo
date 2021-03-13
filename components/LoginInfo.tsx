@@ -1,4 +1,4 @@
-import { UserData } from "../interface/UserData";
+import { UserData } from '../interface/UserData'
 
 interface Props {
   user: UserData

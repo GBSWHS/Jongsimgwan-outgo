@@ -11,7 +11,8 @@ create table user (
   passwd char(64) not null,
   salt char(8) not null,
   nickname char(4) not null, 
-  num int not null
+  num int not null,
+  roomno int not null
 );
 
 create table outgo (

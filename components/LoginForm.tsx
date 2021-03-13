@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Card from './Card'
 
 export default function LoginForm () {
   const [id, setId] = useState('')
@@ -22,21 +23,21 @@ export default function LoginForm () {
     }).then((res) => res.json())
 
     if (!res.success) return alert(res.msg)
-    
+
     document.cookie = `token=${res.token}`
-    window.location.replace('/')
+    window.location.replace(res.redirect)
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="inline-block m-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
-        <span className="block mb-5">정심관 잔류 요청 로그인</span>
-        <input required onChange={setState(setId)} type="text" placeholder="아이디" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
-        <input required onChange={setState(setPasswd)} type="password" placeholder="비번" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
-      </div>
-      <div className="inline-block px-10 my-5 w-full">
-        <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">로그인!</button>
-      </div>
-    </form>
+        <Card>
+          <span className="block mb-5">정심관 출사인원 관리 시스템 로그인</span>
+          <input required onChange={setState(setId)} type="text" placeholder="ID, ex) 1101" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+          <input required onChange={setState(setPasswd)} type="password" placeholder="비밀번호" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+        </Card>
+        <div className="inline-block px-10 my-5 w-full">
+          <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">로그인!</button>
+        </div>
+      </form>
   )
 }

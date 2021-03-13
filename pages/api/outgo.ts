@@ -25,11 +25,11 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
     const decode = verify(token, process.env.JWT_TOKEN) as { id: string }
     const [exist] = await db.select('*').where({ id: decode.id }).from('outgo')
     if (!exist) {
-      await db.insert({ id: decode. id, reason }).into('outgo')
+      await db.insert({ id: decode.id, reason }).into('outgo')
       return res.json({ success: true, msg: '성공적으로 잔류주 잔류(을)를 선택하였습니다' })
     } else {
-      await db.select('*').where({ id : decode.id }).from('outgo').del()
+      await db.select('*').where({ id: decode.id }).from('outgo').del()
       return res.json({ success: true, msg: '성공적으로 잔류주 외출(을)를 선택하였습니다' })
     }
-  } catch (err) { console.log(err); return res.json({ success: false, msg: '잘못된 형식의 토큰입니다', err })}
+  } catch (err) { console.log(err); return res.json({ success: false, msg: '잘못된 형식의 토큰입니다', err }) }
 }

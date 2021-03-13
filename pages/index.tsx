@@ -1,12 +1,12 @@
-import Container from "../components/Container";
-import OutgoState from '../components/OutgoState';
-import OutgoDday from '../components/OutgoDday';
-import Footer from '../components/Footer';
-import LogoutBtn from '../components/LogoutBtn';
-import LoginInfo from '../components/LoginInfo';
-import useSWR from "swr";
-import Card from "../components/Card";
-import { useRouter } from "next/router";
+import Container from '../components/Container'
+import OutgoState from '../components/OutgoState'
+import OutgoDday from '../components/OutgoDday'
+import Footer from '../components/Footer'
+import LogoutBtn from '../components/LogoutBtn'
+import LoginInfo from '../components/LoginInfo'
+import useSWR from 'swr'
+import Card from '../components/Card'
+import { useRouter } from 'next/router'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 export default function Home () {

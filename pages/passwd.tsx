@@ -1,11 +1,11 @@
 import Container from '../components/Container'
 import Footer from '../components/Footer'
-import LoginForm from '../components/LoginForm'
+import PasswdForm from '../components/PasswdForm'
 
-export default function LoginPage () {
+export default function PasswdPage () {
   return (
     <Container>
-      <LoginForm />
+      <PasswdForm />
       <Footer />
     </Container>
   )

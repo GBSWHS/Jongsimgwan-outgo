@@ -20,7 +20,7 @@ export default async function statusApi (req: NextApiRequest, res: NextApiRespon
     const [user] = await db.select('*').where({ id: decode.id }).from('user')
     if (!user) return res.json({ redirect: '/login' })
     const { id, grade, class: classid, nickname, num } = user
-    
+
     const thisweek = getWeekNumber(new Date())
     const outgoweek = outweeks.filter((_, i) => i + 10 > thisweek).sort((a, b) => a.week - b.week)[0]
 
@@ -28,7 +28,7 @@ export default async function statusApi (req: NextApiRequest, res: NextApiRespon
 
     const [year, month, date] = outgoweek.date.split('-')
     const dday = getDateNumber(new Date(year, (month as number) - 1, date)) - getDateNumber(new Date())
-    
+
     const [outgo] = await db.select('*').where({ id }).from('outgo')
 
     return res.json({ user: { id, grade, class: classid, nickname, num }, dday, isGo: !!outgo, reason: outgo?.reason || '', canGo: outgoweek.canGo })
