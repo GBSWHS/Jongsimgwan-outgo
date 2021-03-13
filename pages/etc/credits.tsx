@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Card from '../components/Card'
-import Container from '../components/Container'
-import Footer from '../components/Footer'
+import Card from '../../components/Card'
+import Container from '../../components/Container'
+import Footer from '../../components/Footer'
 
 export default function CCPage () {
   return (
