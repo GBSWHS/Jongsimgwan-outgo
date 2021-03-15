@@ -15,7 +15,11 @@ export default function AbortPage () {
       body: JSON.stringify({ reason: '임태현 천재다 ㅋㅋ루' })
     }).then((res) => res.json())
 
-    if (!res.success) return alert(res.msg)
+    if (!res.success) {
+      alert(res.msg)
+      return <Container><Footer /></Container>
+    }
+
     alert('성공적으로 출사 요청을 취소하였습니다.')
 
     router.push('/')

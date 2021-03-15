@@ -22,7 +22,7 @@ export default async function statusApi (req: NextApiRequest, res: NextApiRespon
     const { id, grade, class: classid, nickname, num } = user
 
     const thisweek = getWeekNumber(new Date())
-    const outgoweek = outweeks.filter((_, i) => i + 10 > thisweek).sort((a, b) => a.week - b.week)[0]
+    const outgoweek = outweeks.filter((_, i) => i + 11 > thisweek).sort((a, b) => a.week - b.week)[0]
 
     if (!outgoweek) return res.json({ user: { id, grade, class: classid, nickname, num }, dday: '?' })
 

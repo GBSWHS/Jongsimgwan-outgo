@@ -17,7 +17,7 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
   if (reason.length < 10) return res.json({ success: false, msg: '출사 사유를 자세히 적어주세요. (최소 10자)' })
 
   const thisweek = getWeekNumber(new Date())
-  const outgoweek = outweeks.filter((_, i) => i + 10 > thisweek).sort((a, b) => a.week - b.week)[0]
+  const outgoweek = outweeks.filter((_, i) => i + 11 > thisweek).sort((a, b) => a.week - b.week)[0]
 
   if (!outgoweek.canGo) return res.json({ success: false, msg: '의무 출사주 입니다.' })
 

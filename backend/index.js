@@ -74,4 +74,4 @@ async function clearSheet () {
 
 init()
 schedule('* * * * *', renderSheet)
-schedule('0 0 * * 5', resetOutgoData)
+schedule('0 0 * * 1', resetOutgoData)
