@@ -36,6 +36,7 @@ async function init () {
 }
 
 async function renderSheet () {
+  console.log('Updated!')
   await clearSheet()
   await doc.loadInfo()
 
@@ -51,11 +52,11 @@ async function renderSheet () {
     반: curr.class + '반',
     번호: curr.num + '번',
     이름: curr.nickname,
-    사유: curr.reason
+    사유: curr.reason,
+    접수일: curr.created_at
   }], []))
 
-  const timestamp = sheet.getCellByA1('F4')
-
+  const timestamp = sheet.getCellByA1('F4:G4')
   timestamp.value = moment().format('YYYY년 MM월 DD일 hh:mm')
   timestamp.save()
 }

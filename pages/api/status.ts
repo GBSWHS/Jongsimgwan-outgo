@@ -31,6 +31,6 @@ export default async function statusApi (req: NextApiRequest, res: NextApiRespon
 
     const [outgo] = await db.select('*').where({ id }).from('outgo')
 
-    return res.json({ user: { id, grade, class: classid, nickname, num }, dday, isGo: !!outgo, reason: outgo?.reason || '', canGo: outgoweek.canGo })
+    return res.json({ user: { id, grade, class: classid, nickname, num }, dday, isGo: !!outgo, reason: outgo?.reason || '', canGo: outgoweek.canGo, student: user.student })
   } catch (err) { return res.json({ redirect: '/login' }) }
 }

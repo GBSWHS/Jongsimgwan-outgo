@@ -16,7 +16,7 @@ export default function Home () {
   if (!data) return <Container><Card>로딩중...</Card></Container>
   if (error) return <Container><span className="text-red">에러: {error}</span></Container>
 
-  const { redirect, dday, reason, canGo, isGo, user } = data
+  const { redirect, dday, reason, canGo, isGo, user, student } = data
   if (redirect) {
     router.push(redirect)
     return <Container><Card>로딩중...</Card></Container>
@@ -25,7 +25,7 @@ export default function Home () {
   return (
     <Container>
       <OutgoDday dday={dday}/>
-      <OutgoState reason={reason} canGo={canGo} isGo={isGo}/>
+      <OutgoState reason={reason} canGo={canGo} isGo={isGo} student={student} dday={dday}/>
       <LoginInfo user={user} />
       <LogoutBtn />
 
