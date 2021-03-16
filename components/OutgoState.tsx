@@ -11,14 +11,14 @@ interface Props {
 
 export default function OutgoState ({ canGo, isGo, reason, dday, student }: Props) {
   const isGoElement =
-      student === 1 || dday > 5
+      student || dday > 5
         ? (isGo
-            ? <span className="block mb-5 font-bold text-green-500 text-xl">신청됨 (사유: {reason})</span>
+            ? <span className="block mb-5 font-bold text-green-500 text-xl break-normal">신청됨 (사유: {reason})</span>
             : <span className="block mb-5 font-bold text-gray-500 text-xl">신청되지 않음</span>)
         : <span className="block mb-5 font-bold text-gray-500 text-xl">신청 불가</span>
 
   const canGoElement =
-  student === 1 || dday > 5
+  student || dday > 5
     ? (canGo
         ? (isGo
             ? <Link href="/abort"><button className="inline w-full align-top bg-red-300 rounded-md shadow p-2">신청 취소</button></Link>

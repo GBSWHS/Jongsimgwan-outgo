@@ -6,13 +6,12 @@ export default function ApplyForm () {
   const router = useRouter()
   const [reason, setReason] = useState('')
   const [passwd, setPasswd] = useState('')
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState('2')
   async function onSubmit (event) {
-    setDate('1')
     event.preventDefault()
 
+    if (date === '2') return alert('출사일을 정해주세요.')
     if (!confirm('출사를 신청하시겠습니까?\n이 출사 요청은 사감 선생님께 전송됩니다.')) return
-
     const res = await fetch('/api/outgo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -27,9 +26,10 @@ export default function ApplyForm () {
     <form onSubmit={onSubmit}>
       <div className="inline-block p-5 shadow text-center rounded-md w-10/12 bg-white">
         <span className="block mb-5">잔류주 출사 신청</span>
-        <textarea onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. (최소 10자)"></textarea>
+        <textarea onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. (최소 10자) ex) 일요일날 치과예약이 있어서 치과에 가서 치과 진료를 받아야하기 때문에 가봐야합니다."></textarea>
 
-        <select onChange={(event) => setDate(event.target.value)} className="inline-block p-1 mt-2 shadow text-center rounded-md w-full bg-white">
+        <select value={date} onChange={(event) => setDate(event.target.value)} className="inline-block p-1 mt-2 shadow text-center rounded-md w-full bg-white">
+          <option value="2" disabled>-- 출사일을 정해주세요 --</option>
           <option value="1">금요일 저녁 출사</option>
           <option value="0">토요일 오후 1시 출사</option>
         </select>

@@ -32,7 +32,7 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
       if (!passwd) return res.json({ success: false, msg: '선생님 비밀번호를 입력해주세요.' })
       const [tuser] = await db.select('*').where({ id: decode.id.substr(0, 2) + '00' }).from('user')
       const [user] = await db.select('*').where({ id: decode.id }).from('user')
-      if (user.student === 0) return res.json({ success: false, msg: '선생님은 잔류주 출사를 신청하실수 없습니다.' })
+      if (!user.student) return res.json({ success: false, msg: '선생님은 잔류주 출사를 신청하실수 없습니다.' })
       if (!tuser) return res.json({ success: false, msg: '선생님 정보를 불러올 수 없습니다.' })
       if (tuser.passwd !== sha256(tuser.salt + passwd)) return res.json({ success: false, msg: '선생님 비밀번호가 일치하지 않습니다.' })
       await db.insert({ id: decode.id, reason, outgodate: Number(date) }).into('outgo')
