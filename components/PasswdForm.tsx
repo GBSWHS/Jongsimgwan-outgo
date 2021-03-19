@@ -41,6 +41,9 @@ export default function LoginForm () {
       <div className="inline-block px-10 my-5 w-full">
         <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">변경</button>
       </div>
+      <div className="inline-block px-10 my-5 w-full">
+        <Link href="/"><button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">다음에 변경</button></Link>
+      </div>
     </form>
   )
 }
