@@ -28,6 +28,11 @@ export default function Home () {
       <OutgoState reason={reason} canGo={canGo} isGo={isGo} student={student} dday={dday}/>
       <LoginInfo user={user} />
       <LogoutBtn />
+      <div className="inline-block px-10 my-5 w-full">
+        <Link href="/passwd">
+          <button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">비밀번호 변경</button>
+        </Link>
+      </div>
 
       <Footer />
     </Container>
