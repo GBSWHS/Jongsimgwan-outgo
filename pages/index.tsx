@@ -7,6 +7,7 @@ import LoginInfo from '../components/LoginInfo'
 import useSWR from 'swr'
 import Card from '../components/Card'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 export default function Home () {
