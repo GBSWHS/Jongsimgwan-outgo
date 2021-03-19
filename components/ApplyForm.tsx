@@ -24,7 +24,7 @@ export default function ApplyForm () {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="inline-block p-5 shadow text-center rounded-md w-10/12 bg-white">
+      <div className="inline-block mt-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
         <span className="block mb-5">잔류주 출사 신청</span>
         <textarea onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. (최소 10자) ex) 일요일날 치과예약이 있어서 치과에 가서 치과 진료를 받아야하기 때문에 가봐야합니다."></textarea>
 
