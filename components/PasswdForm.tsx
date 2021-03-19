@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Link from 'next/link'
 import Card from './Card'
 
 export default function LoginForm () {
