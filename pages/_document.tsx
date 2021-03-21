@@ -5,8 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          <title>정심관 출사 관리 시스템 - OutGo</title>
-          <link rel="manifest" href="manifest.json" />
+          <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.png"/>
 
           <meta name="og:site_name" content="jongsimgwan outgo"/>
