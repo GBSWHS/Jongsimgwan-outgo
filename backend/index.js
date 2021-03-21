@@ -45,6 +45,7 @@ async function renderSheet () {
 
   await sheet.loadHeaderRow()
   const outgoDatas = await fetchOutgoData()
+  console.log(outgoDatas)
   await sheet.addRows(outgoDatas.reduce((prev, curr) => [...prev, {
     방번호: curr.roomno,
     학년: curr.grade + '학년',
@@ -53,7 +54,8 @@ async function renderSheet () {
     이름: curr.nickname,
     사유: curr.reason,
     접수일: moment(curr.created_at).format('YYYY년 MM월 DD일 hh:mm'),
-    출사일: curr.outgodate ? '금요일 저녁' : '토요일 오후 1시'
+    출사시작: moment(curr.startdate).format('YYYY년 MM월 DD일 hh:mm') + ' - ' + (Number(curr.outgodate) ? '금요일 저녁' : '토요일 오후 1시'),
+    출사끝: moment(curr.enddate).format('YYYY년 MM월 DD일 hh:mm')
   }], []))
 
   const timestamp = sheet.getCellByA1('F2:G4')

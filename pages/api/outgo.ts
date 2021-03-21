@@ -12,7 +12,7 @@ const outweeks = JSON.parse(readFileSync(path.resolve() + '/data/date.json').toS
 
 export default async function outgoApi (req : NextApiRequest, res: NextApiResponse) {
   if (!req.headers.cookie) return res.json({ success: false, msg: '토큰이 없습니다.' })
-  const { reason = '', passwd, date } = req.body
+  const { reason = '', passwd, startdate, enddate, destination, outgodate } = req.body
   const { token } = parse(req.headers.cookie)
   if (!token) return res.json({ success: false, msg: '토큰이 없습니다.' })
   if (reason.length < 10) return res.json({ success: false, msg: '출사 사유를 자세히 적어주세요. (최소 10자)' })
@@ -35,7 +35,7 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
       if (!user.student) return res.json({ success: false, msg: '선생님은 잔류주 출사를 신청하실수 없습니다.' })
       if (!tuser) return res.json({ success: false, msg: '선생님 정보를 불러올 수 없습니다.' })
       if (tuser.passwd !== sha256(tuser.salt + passwd)) return res.json({ success: false, msg: '선생님 비밀번호가 일치하지 않습니다.' })
-      await db.insert({ id: decode.id, reason, outgodate: Number(date) }).into('outgo')
+      await db.insert({ id: decode.id, reason, startdate, enddate, destination, outgodate }).into('outgo')
       return res.json({ success: true, msg: '성공적으로 잔류주 잔류(을)를 선택하였습니다' })
     } else {
       await db.select('*').where({ id: decode.id }).from('outgo').del()

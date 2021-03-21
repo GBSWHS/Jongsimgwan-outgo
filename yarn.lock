@@ -3470,6 +3470,11 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+window-date-picker-react@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/window-date-picker-react/-/window-date-picker-react-1.0.0.tgz#50f653a0e59fcc8c39e8cbd18c63417eab2469b8"
+  integrity sha512-c4Z6+Atw8oDy07yJ3EM48VLS4RipU0CKH3BlT6RAC9Bn0bEPXKYU2rXaSQgSG2CFpXxqg8UQGKU//GKuYFjDHg==
+
 word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
