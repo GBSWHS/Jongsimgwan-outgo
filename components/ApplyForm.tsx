@@ -17,6 +17,7 @@ export default function ApplyForm (dday) {
     event.preventDefault()
 
     if (!startdate || !enddate) return alert('출사기간이 설정되어 있지 않습니다.')
+    if (moment(startdate).get('hour') < 1 && moment(startdate).get('day') === 6) return alert('토요일은 오후 1시부터 신청 가능합니다.')
     if (!confirm('출사를 신청하시겠습니까?\n이 출사 요청은 사감 선생님께 전송됩니다.')) return
     const res = await fetch('/api/outgo', {
       method: 'POST',
