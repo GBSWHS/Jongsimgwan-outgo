@@ -24,7 +24,8 @@
     "react-dom": "17.0.1",
     "sha256": "^0.2.0",
     "swr": "^0.5.2",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.3",
+    "window-date-picker-react": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.32",

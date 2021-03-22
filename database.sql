@@ -18,7 +18,10 @@ create table user (
 
 create table outgo (
   id varchar(20) not null primary key,
-  outgodate int(1) not null default 1,
   reason text not null,
+  destination text not null,
+  startdate varchar(20) not null,
+  enddate varchar(20) not null,
+  outgodate varchar(1) not null default 1,
   created_at timestamp default current_timestamp 
 );
