@@ -1,5 +1,5 @@
-if (Object.keys(navigator).includes('serviceWorker')) {
-  window.onload = function () {
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
     navigator.serviceWorker.register('/serviceWorker.js')
-  }
+  })
 }
