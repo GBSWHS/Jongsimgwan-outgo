@@ -17,6 +17,7 @@ export default function Home () {
   const { data, error } = useSWR('/api/status', fetcher)
 
   if (!data) return <Container><Card>로딩중...</Card></Container>
+  if (navigator.onLine === false) return <Container><span className="text-red">인터넷 접속 상태를 확인해 주세요</span></Container>
   if (error) return <Container><span className="text-red">에러: {error}</span></Container>
 
   const { redirect, dday, reason, canGo, isGo, user, student } = data
