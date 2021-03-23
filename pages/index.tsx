@@ -8,6 +8,8 @@ import useSWR from 'swr'
 import Card from '../components/Card'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Scroller from '../components/Scroller'
+import PWAPromote from '../components/PWAPromote'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 export default function Home () {
@@ -25,15 +27,20 @@ export default function Home () {
 
   return (
     <Container>
-      <OutgoDday dday={dday}/>
-      <OutgoState reason={reason} canGo={canGo} isGo={isGo} student={student} dday={dday}/>
-      <LoginInfo user={user} />
-      <LogoutBtn />
-      <div className="inline-block px-10 my-5 w-full">
-        <Link href="/passwd">
-          <button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">비밀번호 변경</button>
-        </Link>
-      </div>
+      <Scroller>
+        <PWAPromote />
+
+        <OutgoDday dday={dday}/>
+        <OutgoState reason={reason} canGo={canGo} isGo={isGo} student={student} dday={dday}/>
+
+        <LoginInfo user={user} />
+        <LogoutBtn />
+        <div className="inline-block px-10 my-5 w-full">
+          <Link href="/passwd">
+            <button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">비밀번호 변경</button>
+          </Link>
+        </div>
+      </Scroller>
 
       <Footer />
     </Container>

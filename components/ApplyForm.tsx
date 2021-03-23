@@ -30,34 +30,32 @@ export default function ApplyForm (dday) {
   }
 
   return (
-    <div className="overflow-y-auto h-screen">
-      <form onSubmit={onSubmit} className="mb-10">
-        <div className="inline-block mt-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
-          <span className="block mb-5">잔류주 출사 신청</span>
-          <p>출사 사유</p>
-          <textarea required onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. (최소 10자) ex) 일요일날 치과예약이 있어서 치과에 가서 치과 진료를 받아야하기 때문에 가봐야합니다."></textarea>
-          <br/><p>출사후 행선지</p>
-          <textarea required onChange={(event) => setDestination(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사후 행선지를 적어주세요. ex) 치과 진료 후 집으로 이동"></textarea>
-          <br/><p>출사 기간</p>
-          <div className="border-2 border-gray-100 rounded-md shadow-sm">
-            <input onChange={(event) => setStartdate(event.target.value)} type="datetime-local" min={ formattedDate(dday.dday) + 'T16:30'} max={ formattedDate(dday.dday + 1) + 'T20:00'}/>부터
-          </div>
-          <div className="border-2 border-gray-100 mt-2 rounded-md shadow-sm">
-            <input onChange={(event) => setEnddate(event.target.value)} type="datetime-local" min={ formattedDate(dday.dday + 2) + 'T17:00'} max={ formattedDate(dday.dday + 2) + 'T20:00'}/>까지
-          </div>
+    <form onSubmit={onSubmit} className="mb-10">
+      <div className="inline-block mt-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
+        <span className="block mb-5">잔류주 출사 신청</span>
+        <p>출사 사유</p>
+        <textarea required onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. (최소 10자) ex) 일요일날 치과예약이 있어서 치과에 가서 치과 진료를 받아야하기 때문에 가봐야합니다."></textarea>
+        <br/><p>출사후 행선지</p>
+        <textarea required onChange={(event) => setDestination(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사후 행선지를 적어주세요. ex) 치과 진료 후 집으로 이동"></textarea>
+        <br/><p>출사 기간</p>
+        <div className="border-2 border-gray-100 rounded-md shadow-sm">
+          <input onChange={(event) => setStartdate(event.target.value)} type="datetime" min={ formattedDate(dday.dday) + 'T16:30'} max={ formattedDate(dday.dday + 1) + 'T20:00'}/>부터
         </div>
-        <div className="inline-block m-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
-          <span className="block mb-5">담임 선생님 비밀번호</span>
-          <input required onChange={(event) => (setPasswd(event.target.value))} type="password" placeholder="비밀번호" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+        <div className="border-2 border-gray-100 mt-2 rounded-md shadow-sm">
+          <input onChange={(event) => setEnddate(event.target.value)} type="daate" min={ formattedDate(dday.dday + 2) + 'T17:00'} max={ formattedDate(dday.dday + 2) + 'T20:00'}/>까지
         </div>
+      </div>
+      <div className="inline-block m-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
+        <span className="block mb-5">담임 선생님 비밀번호</span>
+        <input required onChange={(event) => (setPasswd(event.target.value))} type="password" placeholder="비밀번호" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
+      </div>
 
-        <div className="inline-block px-10 w-full">
-          <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">보내기</button>
-        </div>
-        <div className="inline-block px-10 my-5 w-full">
-          <Link href="/"><button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">돌아가기</button></Link>
-        </div>
-      </form>
-    </div>
+      <div className="inline-block px-10 w-full">
+        <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">보내기</button>
+      </div>
+      <div className="inline-block px-10 my-5 w-full">
+        <Link href="/"><button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">돌아가기</button></Link>
+      </div>
+    </form>
   )
 }

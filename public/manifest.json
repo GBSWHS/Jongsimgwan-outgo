@@ -1,5 +1,5 @@
 {
-  "short_name": "OutGo",
+  "short_name": "정심관 출사 신청",
   "name": "정심관 출사 관리 시스템",
   "icons": [
     {
@@ -16,6 +16,9 @@
     }
   ],
   "start_url": "/",
+  "dir": "ltr",
+  "lang": "ko-KR",
+  "orientation": "portrait-primary",
   "background_color": "#3367D6",
   "display": "standalone",
   "scope": "/",

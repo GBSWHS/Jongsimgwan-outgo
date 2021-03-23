@@ -3,6 +3,7 @@ import ApplyForm from '../components/ApplyForm'
 import Footer from '../components/Footer'
 import Card from '../components/Card'
 import useSWR from 'swr'
+import Scroller from '../components/Scroller'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 export default function ApplyPage () {
@@ -11,10 +12,12 @@ export default function ApplyPage () {
   if (!data) return <Container><Card>로딩중...</Card></Container>
   if (error) return <Container><span className="text-red">에러: {error}</span></Container>
 
-  const { dday, reason, canGo, isGo, user, student } = data
+  const { dday } = data
   return (
     <Container>
-      <ApplyForm dday={dday} />
+      <Scroller>
+        <ApplyForm dday={dday} />
+      </Scroller>
       <Footer />
     </Container>
   )
