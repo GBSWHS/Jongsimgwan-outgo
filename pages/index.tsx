@@ -13,12 +13,10 @@ import PWAPromote from '../components/PWAPromote'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 export default function Home () {
-  if (navigator.onLine === false) return <Container><span className="text-red">인터넷 접속 상태를 확인해 주세요</span></Container>
-
   const router = useRouter()
   const { data, error } = useSWR('/api/status', fetcher)
 
-  if (!data) return <Container><Card>로딩중...</Card></Container>
+  if (!data) return <Container><Card><span className="text-xl">로딩중...</span><span className="block">인터넷 연결 상태를 확인하세요</span></Card></Container>
   if (error) return <Container><span className="text-red">에러: {error}</span></Container>
 
   const { redirect, dday, reason, canGo, isGo, user, student } = data

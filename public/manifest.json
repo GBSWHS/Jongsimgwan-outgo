@@ -19,8 +19,8 @@
   "dir": "ltr",
   "lang": "ko-KR",
   "orientation": "portrait-primary",
-  "background_color": "#3367D6",
+  "background_color": "#F3F4F6",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#ACCFFF"
+  "theme_color": "#F3F4F6"
 }
