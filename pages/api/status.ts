@@ -22,15 +22,19 @@ export default async function statusApi (req: NextApiRequest, res: NextApiRespon
     const { id, grade, class: classid, nickname, num } = user
 
     const thisweek = getWeekNumber(new Date())
-    const outgoweek = outweeks.filter((_, i) => i + 11 > thisweek)[0]
+    const outgoweek = outweeks.filter((w, i) => i + (ddayCalc(w.date.split('-')[0], w.date.split('-')[1], w.date.split('-')[2]) < 0 ? 10 : 11) > thisweek)[0]
 
     if (!outgoweek) return res.json({ user: { id, grade, class: classid, nickname, num }, dday: '?' })
 
     const [year, month, date] = outgoweek.date.split('-')
-    const dday = getDateNumber(new Date(year, (month as number) - 1, date)) - getDateNumber(new Date())
+    const dday = ddayCalc(year, month, date)
 
     const [outgo] = await db.select('*').where({ id }).from('outgo')
 
     return res.json({ user: { id, grade, class: classid, nickname, num }, dday, isGo: !!outgo, reason: outgo?.reason || '', canGo: outgoweek.canGo, student: user.student })
   } catch (err) { return res.json({ redirect: '/login' }) }
+}
+
+function ddayCalc (year, month, date) {
+  return getDateNumber(new Date(year, (month as number) - 1, date)) - getDateNumber(new Date())
 }
