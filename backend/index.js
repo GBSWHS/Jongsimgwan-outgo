@@ -2,6 +2,7 @@ const knex = require('knex')
 const moment = require('moment')
 const { readFileSync } = require('fs')
 const { schedule } = require('node-cron')
+const { google } = require('googleapis')
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
 const PATH = process.cwd()
@@ -20,6 +21,14 @@ const db = knex({
 const doc = new GoogleSpreadsheet(SHEET_ID)
 const googleAuth = JSON.parse(readFileSync(PATH + '/data/googleauth.json'))
 
+const gSheet = google.sheets({
+  version: 'v4',
+  auth: new google.auth.GoogleAuth({
+    keyFile: PATH + '/data/googleauth.json',
+    scopes: ['https://www.googleapis.com/auth/spreadsheets']
+  })
+})
+
 const fetchOutgoData = async () =>
   await db.select('*').from('outgo').leftJoin('user', 'user.id', 'outgo.id')
 
@@ -36,7 +45,6 @@ async function init () {
 }
 
 async function renderSheet () {
-  console.log('Updated!')
   await clearSheet()
   await doc.loadInfo()
 
@@ -53,9 +61,10 @@ async function renderSheet () {
     번호: curr.num + '번',
     이름: curr.nickname,
     사유: curr.reason,
+    위치: curr.destination,
     접수일: moment(curr.created_at).format('YYYY년 MM월 DD일 hh:mm'),
     출사시작: moment(curr.startdate).format('YYYY년 MM월 DD일 hh:mm') + ' - ' + (Number(curr.outgodate) ? '금요일 저녁' : '토요일 오후 1시'),
-    출사끝: moment(curr.enddate).format('YYYY년 MM월 DD일 hh:mm')
+    복귀일: moment(curr.enddate).format('YYYY년 MM월 DD일 hh:mm')
   }], []))
 
   const timestamp = sheet.getCellByA1('F2:G4')
@@ -64,15 +73,12 @@ async function renderSheet () {
 }
 
 async function clearSheet () {
-  await doc.loadInfo()
-
-  const [sheet] = doc.sheetsByIndex
-  await sheet.loadCells()
-
-  await sheet.loadHeaderRow()
-  const rows = await sheet.getRows()
-
-  for (const row of rows.slice(5)) { await row.delete() }
+  await gSheet.spreadsheets.values.batchClear({
+    spreadsheetId: SHEET_ID,
+    resource: {
+      ranges: ["'출사인원 목록'!A7:I14"]
+    }
+  })
 }
 
 init()

@@ -35,7 +35,7 @@ export default function LoginForm () {
     <form onSubmit={handleSubmit}>
       <Card>
         <span className="block text-lg">비밀번호 변경</span>
-        <span className="block text-sm mb-5">첫 로그인시 비밀번호 변경이 필요합니다</span>
+        <span className="block text-sm mb-5">비밀번호 변경이 필요합니다</span>
         <input required onChange={setState(setPasswd)} type="password" placeholder="비밀번호" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
         <input required onChange={setState(setCheck)} type="password" placeholder="비밀번호 확인" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
       </Card>
