@@ -76,7 +76,7 @@ async function clearSheet () {
   await gSheet.spreadsheets.values.batchClear({
     spreadsheetId: SHEET_ID,
     resource: {
-      ranges: ["'출사인원 목록'!A7:I14"]
+      ranges: ["'출사인원 목록'!A7:Z10000"]
     }
   })
 }
