@@ -19,12 +19,13 @@ export default function CCPage () {
 
         <Card>
           <span className="block mb-5 border-b-2 pb-3 text-xl font-bold">제작기간</span>
-          <span>2021년 3월 10일부터 4일간</span>
+          <span className="block">2021년 3월 10일부터 4일간</span>
+          <span>(유지보수: 20일간)</span>
         </Card>
 
         <Card>
           <span className="block mb-5 border-b-2 pb-3 text-xl font-bold">아이디어 제공</span>
-          <span>경북SW고 교장선생님</span>
+          <span className="block">경북SW고 교장선생님</span>
         </Card>
 
         <Card>
@@ -37,7 +38,7 @@ export default function CCPage () {
           <a className="text-blue-500 underline font-bold" href="https://github.com/GBSWHS/Jongsimgwan-outgo">이곳</a>에서 확인 가능
         </Card>
 
-        <div className="inline-block px-10 mb-32 w-full">
+        <div className="inline-block max-w-sm px-10 mb-32 w-full">
           <Link href="/"><button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">돌아가기</button></Link>
         </div>
       </div>

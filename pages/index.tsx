@@ -35,9 +35,9 @@ export default function Home () {
 
         <LoginInfo user={user} />
         <LogoutBtn />
-        <div className="inline-block px-10 my-5 w-full">
+        <div className="inline-block px-10 mb-5 w-full">
           <Link href="/passwd">
-            <button className="inline w-full align-top bg-gray-500 text-white rounded-md shadow p-2">비밀번호 변경</button>
+            <button className="inline w-full max-w-sm align-top bg-gray-500 text-white rounded-md shadow p-2">비밀번호 변경</button>
           </Link>
         </div>
       </Scroller>

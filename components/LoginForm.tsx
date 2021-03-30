@@ -35,8 +35,10 @@ export default function LoginForm () {
           <input required onChange={setState(setId)} type="text" placeholder="ID, ex) 1101" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
           <input required onChange={setState(setPasswd)} type="password" placeholder="비밀번호" className="mb-1 bg-gray-200 rounded-md w-full p-2"/>
         </Card>
-        <div className="inline-block px-10 my-5 w-full">
-          <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">로그인!</button>
+        <div>
+          <div className="inline-block max-w-sm px-10 my-5 w-full">
+            <button type="submit" className="inline w-full align-top bg-green-500 text-white rounded-md shadow p-2">로그인!</button>
+          </div>
         </div>
       </form>
   )
