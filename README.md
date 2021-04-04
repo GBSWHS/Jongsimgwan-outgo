@@ -110,12 +110,15 @@ SSR(서버 측 렌더링)과 SSG(정적 사이트 생성기)를 적절히 사용
 ## Ⅳ. 프로젝트 결과
 다음은 사용자에게 보이는 화면(View) 목록이다. 모바일 친화적인 디자인과 직관적인 UI로 구성하였다. 또한 PWA구현으로 모바일 사용자에게 빠른 응답이 가능하다.
 
-| <img src="./docs/pasted%20image%200.png" width="200"/> | <img src="./docs/pasted%20image%201.png" width="200"/> | <img src="./docs/pasted%20image%202.png" width="200"/> |
+| | | |
 |-|-|-|
-| <img src="./docs/pasted%20image%203.png" width="200"/> | <img src="./docs/pasted%20image%204.png" width="200"/> | <img src="./docs/pasted%20image%205.png" width="200"/> |
+| <img src="./docs/pasted%20image%200.png" width="200"/> ▲ 사용자 로그인 화면 | <img src="./docs/pasted%20image%201.png" width="200"/> ▲ 사용자 초기 비밀번호 변경 | <img src="./docs/pasted%20image%202.png" width="200"/> ▲ 메인페이지 (출사가능일 및 가능 여부 표시) |
+| <img src="./docs/pasted%20image%203.png" width="200"/> ▲ 출사 사유 입력 화면(출사 사유, 행선지, 기간, 담임 인증 입력) | <img src="./docs/pasted%20image%204.png" width="200"/> ▲ PWA가 지원되는 환경에서의 로그인페이지 | <img src="./docs/pasted%20image%205.png" width="200"/> ▲ PWA앱 시작 화면 |
 
 다음은 출사 인원을 한눈에 볼 수 있도록 제작된 스프레드시트이다.
 학생들이 출사 신청을 할 때마다 자동으로 구글 스프레드시트에 적용된다.
+
+![](docs/sheet.png)
 
 ## Ⅴ. 결론 및 고찰
 이 프로젝트를 하면서 PWA의 원리와 장점에 대하여 알 수 있었다. 또한 모바일 친화적인 웹 디자인을 연구하는 계기가 되었고 사용자를 고려한 디자인에 대하여 생각해보는 시간이 되었다.
