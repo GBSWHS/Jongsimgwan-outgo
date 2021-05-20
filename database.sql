@@ -20,8 +20,8 @@ create table outgo (
   id varchar(20) not null primary key,
   reason text not null,
   destination text not null,
-  startdate varchar(20) not null,
-  enddate varchar(20) not null,
-  outgodate varchar(1) not null default 1,
+  fri int not null,
+  sat int not null,
+  sun int not null,
   created_at timestamp default current_timestamp 
 );

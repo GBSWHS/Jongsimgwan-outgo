@@ -12,11 +12,10 @@ export default function ApplyPage () {
   if (!data) return <Container><Card>로딩중...</Card></Container>
   if (error) return <Container><span className="text-red">에러: {error}</span></Container>
 
-  const { dday } = data
   return (
     <Container>
       <Scroller>
-        <ApplyForm dday={dday} />
+        <ApplyForm grade={data.user.grade} />
       </Scroller>
       <Footer />
     </Container>
