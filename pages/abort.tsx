@@ -8,7 +8,7 @@ export default function AbortPage () {
   main()
 
   async function main () {
-    if (!confirm('출사 요청을 취소하시겠습니까?')) return
+    if (!confirm('출사 설문을 취소하시겠습니까?')) return
     const res = await fetch('/api/outgo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -20,7 +20,7 @@ export default function AbortPage () {
       return <Container><Footer /></Container>
     }
 
-    alert('성공적으로 출사 요청을 취소하였습니다.')
+    alert('성공적으로 출사 설문을 취소하였습니다.')
 
     router.push('/')
   }

@@ -16,7 +16,6 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
   const { token } = parse(req.headers.cookie)
 
   if (!token) return res.json({ success: false, msg: '토큰이 없습니다.' })
-  if (reason.length < 1) return res.json({ success: false, msg: '출사 사유를 적어주세요.' })
 
   const thisweek = getWeekNumber(new Date())
   const outgoweek = outweeks.filter((_, i) => i + 11 > thisweek).sort((a, b) => a.week - b.week)[0]
@@ -25,7 +24,7 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
   const dday = getDateNumber(new Date(year, (month as number) - 1, date_)) - getDateNumber(new Date())
 
   if (!outgoweek.canGo) return res.json({ success: false, msg: '의무 출사주 입니다.' })
-  if (dday > 5) return res.json({ success: false, msg: '아직 신청할 수 없습니다.' })
+  if (dday > 5) return res.json({ success: false, msg: '아직 설문할 수 없습니다.' })
 
   try {
     const decode = verify(token, process.env.JWT_TOKEN) as { id: string }

@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 
 export default function ApplyForm ({ grade }: { grade: number }) {
   const router = useRouter()
-  const [reason, setReason] = useState('')
-  const [destination, setDestination] = useState('')
+
   const [fri, setFri] = useState('2')
   const [sat, setSat] = useState([false, false, false])
   const [sun, setSun] = useState([false, false, false, false])
@@ -16,7 +15,7 @@ export default function ApplyForm ({ grade }: { grade: number }) {
     const res = await fetch('/api/outgo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ reason, destination, fri, sat, sun })
+      body: JSON.stringify({ destination: sat[1] || sun[0] || sun[1] ? prompt('외출을 선택하셨습니다.\n외출 행선지를 입력하세요.\n(예: 대구)')! : '', reason: sat[2] || sun[0] || sun[1] ? prompt('외출을 선택하셨습니다.\n외출 사유를 입력하세요\n(예: 동성로가서 놀꺼임)')! : '', fri, sat, sun })
     }).then((res) => res.json())
 
     if (!res.success) return alert(res.msg)
@@ -27,12 +26,6 @@ export default function ApplyForm ({ grade }: { grade: number }) {
     <form onSubmit={onSubmit} className="mb-10">
       <div className="inline-block max-w-sm mt-5 p-5 shadow text-center rounded-md w-10/12 bg-white">
         <span className="block mb-5">잔류주 출사 신청</span>
-
-        <br/><p>출사후 행선지</p>
-        <input type="text" required onChange={(event) => setDestination(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사후 행선지를 적어주세요. ex) 집"></input>
-
-        <p>출사 사유</p>
-        <input type="text" required onChange={(event) => setReason(event.target.value)} className="mb-1 bg-gray-200 rounded-md w-full p-2" placeholder="출사 사유를 적어주세요. ex) 피곤해서"></input>
 
         {
           grade > 1
@@ -56,28 +49,28 @@ export default function ApplyForm ({ grade }: { grade: number }) {
 
         <br/><p>토요일</p>
         <div>
-          <input type="checkbox" id="sat0" name="sat" value="0" onClick={() => { sat[0] = !sat[0]; setSat(sat) }}/>
+          <input type="checkbox" id="sat0" name="sat" value="0" onChange={() => { sat[0] = !sat[0]; setSat(sat) }}/>
           <label htmlFor="sat0">귀가</label>
 
-          <input type="checkbox" id="sat1" name="sat" value="1" onClick={() => { sat[1] = !sat[1]; setSat(sat) }}/>
+          <input type="checkbox" id="sat1" name="sat" value="1" onChange={() => { sat[1] = !sat[1]; setSat(sat) }}/>
           <label htmlFor="sat1">오후 외출</label>
 
-          <input type="checkbox" id="sat2" name="sat" value="2" onClick={() => { sat[2] = !sat[2]; setSat(sat) }}/>
+          <input type="checkbox" id="sat2" name="sat" value="2" onChange={() => { sat[2] = !sat[2]; setSat(sat) }}/>
           <label htmlFor="sat2">오후 동아리</label>
         </div>
 
         <br/><p>일요일</p>
         <div>
-          <input type="checkbox" id="sun0" name="sun" value="0" onClick={() => { sun[0] = !sun[0]; setSun(sun) }}/>
+          <input type="checkbox" id="sun0" name="sun" value="0" onChange={() => { sun[0] = !sun[0]; setSun(sun) }}/>
           <label htmlFor="sun0">오전 외출</label>
 
-          <input type="checkbox" id="sun1" name="sun" value="1" onClick={() => { sun[1] = !sun[1]; setSun(sun) }}/>
+          <input type="checkbox" id="sun1" name="sun" value="1" onChange={() => { sun[1] = !sun[1]; setSun(sun) }}/>
           <label htmlFor="sun1">오후 외출</label>
 
-          <input type="checkbox" id="sun2" name="sun" value="2" onClick={() => { sun[2] = !sun[2]; setSun(sun) }}/>
+          <input type="checkbox" id="sun2" name="sun" value="2" onChange={() => { sun[2] = !sun[2]; setSun(sun) }}/>
           <label htmlFor="sun2">잔류</label>
 
-          <input type="checkbox" id="sun3" name="sun" value="3" onClick={() => { sun[3] = !sun[3]; setSun(sun) }}/>
+          <input type="checkbox" id="sun3" name="sun" value="3" onChange={() => { sun[3] = !sun[3]; setSun(sun) }}/>
           <label htmlFor="sun3">복귀</label>
         </div>
       </div>
