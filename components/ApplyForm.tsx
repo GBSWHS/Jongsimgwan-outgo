@@ -6,7 +6,7 @@ export default function ApplyForm ({ grade }: { grade: number }) {
   const router = useRouter()
 
   const [fri, setFri] = useState('2')
-  const [sat, setSat] = useState([false, false, false])
+  const [sat, setSat] = useState([false, false, false, false])
   const [sun, setSun] = useState([false, false, false, false])
 
   async function onSubmit (event) {
@@ -57,6 +57,9 @@ export default function ApplyForm ({ grade }: { grade: number }) {
 
           <input type="checkbox" id="sat2" name="sat" value="2" onChange={() => { sat[2] = !sat[2]; setSat(sat) }}/>
           <label htmlFor="sat2">오후 동아리</label>
+
+          <input type="checkbox" id="sat3" name="sat" value="3" onChange={() => { sat[3] = !sat[3]; setSat(sat) }}/>
+          <label htmlFor="sat3">오후 자습</label>
         </div>
 
         <br/><p>일요일</p>
