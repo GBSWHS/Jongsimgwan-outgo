@@ -55,11 +55,23 @@ export default function ApplyForm ({ grade }: { grade: number }) {
           <input className="ml-1" type="checkbox" id="sat1" name="sat" value="1" onChange={() => { sat[1] = !sat[1]; setSat(sat) }}/>
           <label htmlFor="sat1">오후 외출</label>
 
-          <input className="ml-1" type="checkbox" id="sat2" name="sat" value="2" onChange={() => { sat[2] = !sat[2]; setSat(sat) }}/>
-          <label htmlFor="sat2">오후 동아리</label>
+          {
+            grade > 1
+              ? (
+              <>
+                <input className="ml-1" type="checkbox" id="sat2" name="sat" value="2" onChange={() => { sat[2] = !sat[2]; setSat(sat) }}/>
+                <label htmlFor="sat2">잔류</label>
+              </>
+                )
+              : (<>
+                <input className="ml-1" type="checkbox" id="sat2" name="sat" value="2" onChange={() => { sat[2] = !sat[2]; setSat(sat) }}/>
+                <label htmlFor="sat2">오후 동아리</label>
 
-          <input className="ml-1" type="checkbox" id="sat3" name="sat" value="3" onChange={() => { sat[3] = !sat[3]; setSat(sat) }}/>
-          <label htmlFor="sat3">오후 자습</label>
+                <input className="ml-1" type="checkbox" id="sat3" name="sat" value="3" onChange={() => { sat[3] = !sat[3]; setSat(sat) }}/>
+                <label htmlFor="sat3">오후 자습</label>
+              </>)
+          }
+
         </div>
 
         <br/><p>일요일</p>
