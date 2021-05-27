@@ -54,20 +54,23 @@ async function renderSheet () {
     const sheet = doc.sheetsByIndex[sheetIndex]
     const datas = fullData.filter((data) => sheetIndex > 3 ? (data.grade > 1) : (data.grade === 1 && data.class == Number(sheetIndex) + 1))
 
+    const totals = [0, 0, 0, 0, 0, 0, 0, 0]
+
     await sheet.loadCells()
     for (const data of datas) {
       for (let rowIndex = 0; rowIndex < 20; rowIndex++) {
-        console.log(data.id)
         if (sheet.getCellByA1(`B${5 + rowIndex}`).value == data.id) {
           if (data.grade < 2) {
             const sat = intToArray(data.sat)
             const sun = intToArray(data.sun)
 
             for (const cellIndex in sat) {
+              totals[cellIndex] += sat[cellIndex]
               sheet.getCellByA1(`${(13 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
             }
 
             for (const cellIndex in sun) {
+              totals[4 + cellIndex] += sun[cellIndex]
               sheet.getCellByA1(`${(17 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sun[cellIndex] ? 'ㅇ' : ''
             }
 
@@ -101,6 +104,9 @@ async function renderSheet () {
       }
     }
 
+    for (const totalIndex in totals) {
+      sheet.getCellByA1(`${(3 + Number(totalIndex)).toString(36).toUpperCase()}24`).value = totals[totalIndex]
+    }
     sheet.getCellByA1('J2').value = moment().format('YYYY년 MM월 DD일 출력됨')
     await sheet.saveUpdatedCells()
   }
