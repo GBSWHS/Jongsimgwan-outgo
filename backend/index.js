@@ -51,26 +51,27 @@ async function renderSheet () {
   const fullData = await fetchOutgoData()
 
   for (const sheetIndex in doc.sheetsByIndex) {
-    const sheet = doc.sheetsById[sheetIndex]
-    const datas = fullData.filter((data) => sheetIndex > 3 ? (data.grade > 1) : (data.class === sheetIndex + 1))
+    const sheet = doc.sheetsByIndex[sheetIndex]
+    const datas = fullData.filter((data) => sheetIndex > 3 ? (data.grade > 1) : (data.grade === 1 && data.class == Number(sheetIndex) + 1))
 
     await sheet.loadCells()
     for (const data of datas) {
       for (let rowIndex = 0; rowIndex < 20; rowIndex++) {
-        if (sheet.getCellByA1(`B${5 + rowIndex}`).value === data.id) {
+        console.log(data.id)
+        if (sheet.getCellByA1(`B${5 + rowIndex}`).value == data.id) {
           if (data.grade < 2) {
             const sat = intToArray(data.sat)
             const sun = intToArray(data.sun)
 
             for (const cellIndex in sat) {
-              sheet.getCellByA1(`${(13 + cellIndex).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
+              sheet.getCellByA1(`${(13 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
             }
 
             for (const cellIndex in sun) {
-              sheet.getCellByA1(`${(17 + cellIndex).toString(36).toUpperCase()}${5 + rowIndex}`).value = sun[cellIndex] ? 'ㅇ' : ''
+              sheet.getCellByA1(`${(17 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sun[cellIndex] ? 'ㅇ' : ''
             }
 
-            sheet.getCellByA1(`L${5 + rowIndex}`).value = data.reson || ''
+            sheet.getCellByA1(`L${5 + rowIndex}`).value = data.reason || ''
             sheet.getCellByA1(`M${5 + rowIndex}`).value = data.destination || ''
           } else {
             const fri = intToArray(data.fri)
@@ -79,19 +80,19 @@ async function renderSheet () {
 
             for (const cellIndex in fri) {
               if (!cellIndex) continue
-              sheet.getCellByA1(`${(13 + cellIndex).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
+              sheet.getCellByA1(`${(13 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
             }
 
             for (const cellIndex in sat) {
               if (cellIndex > 2) continue
-              sheet.getCellByA1(`${(16 + cellIndex).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
+              sheet.getCellByA1(`${(16 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sat[cellIndex] ? 'ㅇ' : ''
             }
 
             for (const cellIndex in sun) {
-              sheet.getCellByA1(`${(19 + cellIndex).toString(36).toUpperCase()}${5 + rowIndex}`).value = sun[cellIndex] ? 'ㅇ' : ''
+              sheet.getCellByA1(`${(19 + Number(cellIndex)).toString(36).toUpperCase()}${5 + rowIndex}`).value = sun[cellIndex] ? 'ㅇ' : ''
             }
 
-            sheet.getCellByA1(`N${5 + rowIndex}`).value = data.reson || ''
+            sheet.getCellByA1(`N${5 + rowIndex}`).value = data.reason || ''
             sheet.getCellByA1(`O${5 + rowIndex}`).value = data.destination || ''
           }
 
@@ -113,7 +114,7 @@ async function clearSheet () {
         "'소프트웨어개발과1'!D5:M24",
         "'소프트웨어개발과2'!D5:M25",
         "'게임개발과'!D5:M25",
-        "'사물인터넷'!D5:M24",
+        "'사물인터넷과'!D5:M24",
         "'경영회계과2,3학년'!D5:O18"
       ]
     }
