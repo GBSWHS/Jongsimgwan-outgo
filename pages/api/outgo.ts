@@ -31,7 +31,7 @@ export default async function outgoApi (req : NextApiRequest, res: NextApiRespon
     const [exist] = await db.select('*').where({ id: decode.id }).from('outgo')
 
     if (!exist) {
-      await db.insert({ id: decode.id, reason, fri: Number(fri), sat: arrayToNumber(sat), sun: arrayToNumber(sun), destination }).into('outgo')
+      await db.insert({ id: decode.id, reason, fri: Number(fri), sat: arrayToNumber(sat), sun: arrayToNumber(sun), destination: destination! }).into('outgo')
       return res.json({ success: true, msg: '성공적으로 잔류주 잔류(을)를 선택하였습니다' })
     } else {
       await db.select('*').where({ id: decode.id }).from('outgo').del()
