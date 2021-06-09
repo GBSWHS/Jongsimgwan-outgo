@@ -28,7 +28,7 @@ export default function ApplyForm ({ grade }: { grade: number }) {
         <span className="block mb-5">잔류주 출사 신청</span>
 
         {
-          grade > 0
+          grade > 1
             ? (
             <>
               <br/><p>금요일</p>
