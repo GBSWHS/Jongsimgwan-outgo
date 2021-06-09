@@ -28,18 +28,18 @@ export default function ApplyForm ({ grade }: { grade: number }) {
         <span className="block mb-5">잔류주 출사 신청</span>
 
         {
-          grade > 1
+          grade > 0
             ? (
             <>
               <br/><p>금요일</p>
               <div>
-                <input className="ml-1" required type="radio" id="fri0" name="fri" value="0" onChange={(event) => setFri(event.target.value)}/>
+                <input className="ml-1" required type="radio" id="fri0" name="fri" value="0" onClick={(_) => setFri('0')}/>
                 <label htmlFor="fri0">외출</label>
 
-                <input className="ml-1" required type="radio" id="fri1" name="fri" value="1" onChange={(event) => setFri(event.target.value)}/>
+                <input className="ml-1" required type="radio" id="fri1" name="fri" value="1" onClick={(_) => setFri('1')}/>
                 <label htmlFor="fri1">외박</label>
 
-                <input className="ml-1" required type="radio" id="fri2" name="fri" value="2" onChange={(event) => setFri(event.target.value)}/>
+                <input className="ml-1" required type="radio" id="fri2" name="fri" value="2" onClick={(_) => setFri('2')}/>
                 <label htmlFor="fri2">잔류</label>
               </div>
             </>
